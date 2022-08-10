@@ -1,13 +1,9 @@
-# FindSamePicture_20220810
-SSAFY Web Course 같은그림찾기
+# 같은 그림 찾기(FindSamePicture) 
+#### 3 x 4 배열안에 6쌍의 그림이 존재합니다. 같은 그림끼리 맞춰주세요
 
-
-# 프로젝트명
-> 간략한 프로젝트 소개 문구를 작성합니다.
-
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
+![React](https://img.shields.io/badge/HTML-444444?style=for-the-badge&logo=HTML5)
+![React](https://img.shields.io/badge/JavaScript-444444?style=for-the-badge&logo=Javascript)
+![React](https://img.shields.io/badge/CSS-444444?style=for-the-badge&logo=CSS3)
 
 한 두 문단으로 프로젝트 소개 글을 작성합니다.
 
