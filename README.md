@@ -1,4 +1,3 @@
 # FindSamePicture_20220810
 SSAFY Web Course 같은그림찾기
-
-https://user-images.githubusercontent.com/98979901/183834144-3f2bd5b5-0256-4607-b159-4d103963c2f1.mp4
+![ezgif-1-a19d285023](https://user-images.githubusercontent.com/98979901/183835345-bdefe232-9580-45d7-82b7-d0e4c24f743b.gif)
