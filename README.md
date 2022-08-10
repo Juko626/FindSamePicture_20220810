@@ -1,78 +1,81 @@
-# 같은 그림 찾기(FindSamePicture) 
-#### 3 x 4 배열안에 6쌍의 그림이 존재합니다. 같은 그림끼리 맞춰주세요
+# 같은 그림 찾기 게임(FindSamePicture) 
+> 3 x 4 배열안에 6쌍의 그림이 존재합니다. 같은 그림끼리 맞춰주세요. 다맞추면 성공입니다.
 
+<br>
+<br>
+
+![ezgif-1-a19d285023](https://user-images.githubusercontent.com/98979901/183835345-bdefe232-9580-45d7-82b7-d0e4c24f743b.gif)
+
+
+<br>
+## 설계
+### 메모리게임 설계
+1. HTML 각각을, 하드코딩. 그리드 사용
+2. 각각의 영역을 div 로 잡아서 onclick 부여 (파라미터 받기)
+3. 12개의 배열안에 객체, cardArray 만듦
+
+   - name: String, 카드에 들어갈 동물 이름.
+         나중에 이걸로 맞췄는지 판단.
+   - img: String, 이미지의 경로,
+   - id: String, DOM 에 부여될 아이디. ex) 1-4
+   - done: Boolean, 맞췄는지 판단
+
+gameDOM     array
+        파싱한 돔 정보를 gameDOM 빈 배열에 집어넣음: querySelectorAll
+clickCount    number
+        처음엔 0 
+        클릭 횟수
+clickFirst    number
+        처음엔 -1             //location 
+        첫번째 클릭 위치
+clickSecond    number
+        처음엔 -1
+        두번째 클릭 위치
+
+getGameDOM()        DOM 정보를 작업하기 쉽게 미리 파싱
+            열두개의 돔 정보 싹 다 가져옴
+
+이후, cardArray 를 싹 다 섞어버림. 원래 배열 바뀜.
+
+setIDtoCardArray()    cardArray 에 DOM 위치에 알맞는 id 부여
+
+createBoard()        물음표로 가득 찬 게임판 생성
+
+flip()            뒤집기. done 이 true 일 때는 실행 안됨.
+            setClickHistory(location) 실행해서 첫번째 클릭인지 두번째 클릭인지 판단
+            물음표를 그림으로 뒤집음
+            만약, 클릭카운트가 2이면, isCorrect() 실행해서 맞았는지 틀렸는지 판단
+            이후, clickFirst, clickSecond 둘 다 -1 로 초기화
+
+-----------------------------------------------
+setClickHistory(location)    첫번째 클릭인지 두번째 클릭인지 판단해 클릭 데이터 저장
+                즉, 0, 1, 2, 3, ... 11 이 들어감.
+
+isCorrect()        일치하는지 판별
+            만약 클릭했던 두 개의 그림이 일치하면 done 을 true 로 바꿔서
+                flip 이 작동 안되게 처리
+            두 개의 그림이 일치하면
+                backFlip() 실행
+
+backFlip()        틀렸을 때 다시 뒤집음. 0.5초 딜레이 줌.
+
+## TOOL
 ![React](https://img.shields.io/badge/HTML-444444?style=for-the-badge&logo=HTML5)
 ![React](https://img.shields.io/badge/JavaScript-444444?style=for-the-badge&logo=Javascript)
 ![React](https://img.shields.io/badge/CSS-444444?style=for-the-badge&logo=CSS3)
 
-한 두 문단으로 프로젝트 소개 글을 작성합니다.
 
-![ezgif-1-a19d285023](https://user-images.githubusercontent.com/98979901/183835345-bdefe232-9580-45d7-82b7-d0e4c24f743b.gif)
 
-## 설치 방법
+## HTML code
+```HTML
 
-OS X & 리눅스:
-
-```sh
-npm install my-crazy-module --save
 ```
 
-윈도우:
-
-```sh
-edit autoexec.bat
-```
 
 ## 사용 예제
 
-스크린 샷과 코드 예제를 통해 사용 방법을 자세히 설명합니다.
 
-_더 많은 예제와 사용법은 [Wiki][wiki]를 참고하세요._
-
-## 개발 환경 설정
-
-모든 개발 의존성 설치 방법과 자동 테스트 슈트 실행 방법을 운영체제 별로 작성합니다.
-
-```sh
-make install
-npm test
-```
 
 ## 업데이트 내역
 
-* 0.2.1
-    * 수정: 문서 업데이트 (모듈 코드 동일)
-* 0.2.0
-    * 수정: `setDefaultXYZ()` 메서드 제거
-    * 추가: `init()` 메서드 추가
-* 0.1.1
-    * 버그 수정: `baz()` 메서드 호출 시 부팅되지 않는 현상 (@컨트리뷰터 감사합니다!)
-* 0.1.0
-    * 첫 출시
-    * 수정: `foo()` 메서드 네이밍을 `bar()`로 수정
-* 0.0.1
-    * 작업 진행 중
 
-## 정보
-
-이름 – [@트위터 주소](https://twitter.com/dbader_org) – 이메일주소@example.com
-
-XYZ 라이센스를 준수하며 ``LICENSE``에서 자세한 정보를 확인할 수 있습니다.
-
-[https://github.com/yourname/github-link](https://github.com/dbader/)
-
-## 기여 방법
-
-1. (<https://github.com/yourname/yourproject/fork>)을 포크합니다.
-2. (`git checkout -b feature/fooBar`) 명령어로 새 브랜치를 만드세요.
-3. (`git commit -am 'Add some fooBar'`) 명령어로 커밋하세요.
-4. (`git push origin feature/fooBar`) 명령어로 브랜치에 푸시하세요. 
-5. 풀리퀘스트를 보내주세요.
-
-<!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/yourname/yourproject/wiki
